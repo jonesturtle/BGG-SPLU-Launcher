@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SPLU Launcher</title>
-  <script>
-    function launchSPLU() {
-      const script = encodeURIComponent(`
-        document.SPLUcode="";
-        document.SPLUxml="";
-        var SPLUscript=document.createElement('script');
-        SPLUscript.type="text/javascript";
-        SPLUscript.src='https://dazeysan.github.io/SPLU/Source%20Code/SPLU-Current.js';
-        document.body.appendChild(SPLUscript);
-      `);
-      const bggURL = "https://boardgamegeek.com/geekplay.php";
-      const win = window.open(bggURL, '_blank');
-      win.onload = () => win.eval(decodeURIComponent(script));
-    }
-  </script>
+  <title>Launch SPLU</title>
 </head>
-<body onload="launchSPLU()">
-  <h2>Launching SPLU…</h2>
-  <p>If it doesn't open automatically, <a href="#" onclick="launchSPLU()">tap here</a>.</p>
+<body>
+  <h2>Tap below after opening BGG Add Play page</h2>
+  <p><a href="javascript:
+    document.SPLUcode='';
+    document.SPLUxml='';
+    var SPLUscript=document.createElement('script');
+    SPLUscript.type='text/javascript';
+    SPLUscript.src='https://dazeysan.github.io/SPLU/Source%20Code/SPLU-Current.js';
+    document.body.appendChild(SPLUscript);">Launch SPLU</a></p>
+  <p>📌 Tip: Bookmark this page or add it to your home screen.</p>
 </body>
 </html>
