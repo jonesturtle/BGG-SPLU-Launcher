@@ -1,48 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>BGG SPLU Launcher</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, orientation=landscape">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-    #msg {
-      padding: 20px;
-    }
-  </style>
-</head>
-<body>
-  <div id="msg">Loading BGG and SPLU…</div>
-
-  <script>
-    if (window.innerHeight > window.innerWidth) {
-      document.getElementById("msg").innerText = "For best experience, rotate your device to landscape.";
-    }
-
-    const iframe = document.createElement('iframe');
-    iframe.style.width = '100vw';
-    iframe.style.height = '100vh';
-    iframe.style.border = 'none';
-    iframe.src = 'https://boardgamegeek.com/geekplay.php';
-
-    document.body.innerHTML = '';
-    document.body.appendChild(iframe);
-
-    iframe.onload = function () {
-      const script = iframe.contentWindow.document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = 'https://dazeysan.github.io/SPLU/Source%20Code/SPLU-Current.js';
-      iframe.contentWindow.document.body.appendChild(script);
-    };
-  </script>
-</body>
+<html>
+  <head>
+    <title>BGG SPLU Launcher</title>
+    <script>
+      function launchSPLU() {
+        const script = document.createElement('script');
+        script.src = "https://dazeysan.github.io/SPLU/Source%20Code/SPLU-Current.js";
+        script.type = "text/javascript";
+        script.onload = () => alert("SPLU loaded. Now visit a BGG play page.");
+        document.body.appendChild(script);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>BGG SPLU Launcher</h1>
+    <button onclick="launchSPLU()">Inject SPLU</button>
+    <p>Now open a <a href="https://boardgamegeek.com/geekplay.php" target="_blank">BGG Play Page</a>.</p>
+  </body>
 </html>
