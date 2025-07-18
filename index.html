@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BGG SPLU Launcher</title>
-    <script>
-      function launchSPLU() {
-        const script = document.createElement('script');
-        script.src = "https://dazeysan.github.io/SPLU/Source%20Code/SPLU-Current.js";
-        script.type = "text/javascript";
-        script.onload = () => alert("SPLU loaded. Now visit a BGG play page.");
-        document.body.appendChild(script);
-      }
-    </script>
-  </head>
-  <body>
-    <h1>BGG SPLU Launcher</h1>
-    <button onclick="launchSPLU()">Inject SPLU</button>
-    <p>Now open a <a href="https://boardgamegeek.com/geekplay.php" target="_blank">BGG Play Page</a>.</p>
-  </body>
+<head>
+  <title>SPLU Launcher</title>
+  <script>
+    function launchSPLU() {
+      const script = encodeURIComponent(`
+        document.SPLUcode="";
+        document.SPLUxml="";
+        var SPLUscript=document.createElement('script');
+        SPLUscript.type="text/javascript";
+        SPLUscript.src='https://dazeysan.github.io/SPLU/Source%20Code/SPLU-Current.js';
+        document.body.appendChild(SPLUscript);
+      `);
+      const bggURL = "https://boardgamegeek.com/geekplay.php";
+      const win = window.open(bggURL, '_blank');
+      win.onload = () => win.eval(decodeURIComponent(script));
+    }
+  </script>
+</head>
+<body onload="launchSPLU()">
+  <h2>Launching SPLU…</h2>
+  <p>If it doesn't open automatically, <a href="#" onclick="launchSPLU()">tap here</a>.</p>
+</body>
 </html>
